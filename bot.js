@@ -7,7 +7,8 @@ const fs = require('fs');
 const { format } = require('date-fns');
 
 // Подключаем ключ Firebase
-const serviceAccount = require(path.join(__dirname, 'firebase-key.json'));
+const serviceAccount = JSON.parse(process.env.FIREBASE_KEY);
+
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
