@@ -9,11 +9,14 @@ const { format } = require('date-fns');
 // Подключаем ключ Firebase
 const serviceAccount = JSON.parse(process.env.FIREBASE_KEY);
 
+// Исправляем формат ключа (важно для Node.js и Firebase)
+serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: 'https://photo-gallery-a9057-default-rtdb.firebaseio.com/'
 });
+
 
 const db = admin.database();
 
