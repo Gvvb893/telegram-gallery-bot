@@ -707,5 +707,18 @@ bot.onText(/❌ Удалить заведение/, async (msg) => {
 bot.on('polling_error', (error) => {
   console.log('Polling error:', error);
 });
+// --- Для Render, чтобы был открыт порт ---
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('✅ Telegram Gallery Bot is running');
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`🌐 Server running on port ${PORT}`);
+});
+
 
 console.log('🤖 Бот запущен и готов к работе!');
